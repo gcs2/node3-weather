@@ -7,11 +7,11 @@ const forecast = (longitude, latitude, callback) => {
         } else if (body.error) {
             callback(body.error, undefined)
         } else {
-            callback(undefined, {
-                currentData: body.currently,
-                currTemp: body.currently.temperature,
-                currPrecipProbability: body.currently.precipProbability
-            })
+            callback(undefined, body.daily.data[0].summary + ' It is currently ' 
+                     + body.currently.temperature + ' degrees, with a ' 
+                     + body.currently.precipProbability * 100 + 
+                     '% chance of precipitation. Humidity is ' + body.currently.humidity * 100 +
+                     '%. The winds are traveling ' + body.currently.windSpeed + 'mph.')
         }
     }) 
 }

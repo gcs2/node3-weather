@@ -51,16 +51,18 @@ app.get('/weather', (req, res) => {
         if(error) {
             return res.send({ error })
         } else {
-            forecast(longitude, latitude, (error, {currTemp, currPrecipProbability}) => {
+            forecast(longitude, latitude, (error, forecast) => {
                 if(error) {
                     return res.send({ error })
                 } else {
-                    const currPrecipPercentage = currPrecipProbability * 100
                     return res.send({
-                        forecast: `It is currently ${currTemp} degrees F, with a ${currPrecipPercentage}% chance of rain.`,
+                        forecast,
                         location,
-                        address: req.query.address
-                    })                }
+                        address: req.query.address,
+                        longitude,
+                        latitude
+                    })                
+                }
             })
         }
     })
