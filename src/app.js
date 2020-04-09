@@ -4,14 +4,11 @@ const hbs = require('hbs')
 const forecast = require('./utils/forecast')
 const geocode = require('./utils/geocode')
 
-
-console.log(__dirname)
-console.log(__filename)
-console.log(path.join(__dirname, '../public'))
 const viewsPath = path.join(__dirname, '../templates/views')
 const partialsPath = path.join(__dirname, '../templates/partials')
 
 const app = express()
+const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
 
 // setup handlebars engine and views location
@@ -96,6 +93,6 @@ app.get('*', (req, res) => {
     })   
 })
 
-app.listen(3000, () => {
-    console.log('The server is up on port 3000')
+app.listen(port, () => {
+    console.log('The server is up on port' + port)
 })
